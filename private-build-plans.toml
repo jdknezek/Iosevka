@@ -1,0 +1,16 @@
+[buildPlans.iosevka-flat]
+family  = "Iosevka"
+spacing = "normal"
+serifs  = "sans"
+
+[buildPlans.iosevka-flat.variants.design]
+f = "flat-hook"
+g = "singlestorey-flat-hook"
+j = "flat-hook-serifed"
+t = "flat-hook"
+y = "straight-turn"
+asterisk = "low"
+lig-ltgteq = "slanted"
+
+[collectPlans.iosevka-flat]
+from = ["iosevka-flat"]
