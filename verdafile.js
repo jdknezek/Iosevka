@@ -106,6 +106,7 @@ const RawPlans = computed(`metadata:raw-plans`, async target => {
 		Object.assign(bp.buildPlans, privateBP.buildPlans || {});
 		Object.assign(bp.collectPlans, privateBP.collectPlans || {});
 		Object.assign(bp.buildOptions, privateBP.buildOptions || {});
+		Object.assign(bp.collectPlans, privateBP.collectPlans || {});
 	}
 	return bp;
 });
