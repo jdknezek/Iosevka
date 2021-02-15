@@ -5,7 +5,7 @@ serifs  = "sans"
 
 [buildPlans.iosevka-flat.variants.design]
 f = "flat-hook"
-g = "singlestorey-flat-hook"
+g = "single-storey-flat-hook"
 j = "flat-hook-serifed"
 t = "flat-hook"
 y = "straight-turn"
