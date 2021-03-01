@@ -12,5 +12,33 @@ y = "straight-turn"
 asterisk = "low"
 lig-ltgteq = "slanted"
 
+[buildPlans.iosevka-flat-term]
+family  = "Iosevka Term"
+spacing = "term"
+serifs  = "sans"
+
+[buildPlans.iosevka-flat-term.variants.design]
+f = "flat-hook"
+g = "single-storey-flat-hook"
+j = "flat-hook-serifed"
+t = "flat-hook"
+y = "straight-turn"
+asterisk = "low"
+lig-ltgteq = "slanted"
+
+[buildPlans.iosevka-flat-fixed]
+family  = "Iosevka Fixed"
+spacing = "fixed"
+serifs  = "sans"
+
+[buildPlans.iosevka-flat-fixed.variants.design]
+f = "flat-hook"
+g = "single-storey-flat-hook"
+j = "flat-hook-serifed"
+t = "flat-hook"
+y = "straight-turn"
+asterisk = "low"
+lig-ltgteq = "slanted"
+
 [collectPlans.iosevka-flat]
-from = ["iosevka-flat"]
+from = ["iosevka-flat", "iosevka-flat-term", "iosevka-flat-fixed"]
