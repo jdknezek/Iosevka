@@ -2,6 +2,7 @@
 family  = "Iosevka"
 spacing = "normal"
 serifs  = "sans"
+no-cv-ss = true
 
 [buildPlans.iosevka-flat.variants.design]
 f = "flat-hook"
@@ -12,10 +13,14 @@ y = "straight-turn"
 asterisk = "low"
 lig-ltgteq = "slanted"
 
+[buildPlans.iosevka-flat.variants.italic]
+k = "straight"
+
 [buildPlans.iosevka-flat-term]
 family  = "Iosevka Term"
 spacing = "term"
 serifs  = "sans"
+no-cv-ss = true
 
 [buildPlans.iosevka-flat-term.variants.design]
 f = "flat-hook"
@@ -26,10 +31,14 @@ y = "straight-turn"
 asterisk = "low"
 lig-ltgteq = "slanted"
 
+[buildPlans.iosevka-flat-term.variants.italic]
+k = "straight"
+
 [buildPlans.iosevka-flat-fixed]
 family  = "Iosevka Fixed"
 spacing = "fixed"
 serifs  = "sans"
+no-cv-ss = true
 
 [buildPlans.iosevka-flat-fixed.variants.design]
 f = "flat-hook"
@@ -39,6 +48,9 @@ t = "flat-hook"
 y = "straight-turn"
 asterisk = "low"
 lig-ltgteq = "slanted"
+
+[buildPlans.iosevka-flat-fixed.variants.italic]
+k = "straight"
 
 [collectPlans.iosevka-flat]
 from = ["iosevka-flat", "iosevka-flat-term", "iosevka-flat-fixed"]
