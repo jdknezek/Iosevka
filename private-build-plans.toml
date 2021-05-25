@@ -5,16 +5,14 @@ serifs  = "sans"
 no-cv-ss = true
 
 [buildPlans.iosevka-flat.variants.design]
+capital-j = "flat-hook-serifed"
 f = "flat-hook"
 g = "single-storey-flat-hook"
 j = "flat-hook-serifed"
+k = "straight"
 t = "flat-hook"
 y = "straight-turn"
-asterisk = "low"
-lig-ltgteq = "slanted"
-
-[buildPlans.iosevka-flat.variants.italic]
-k = "straight"
+asterisk = "penta-low"
 
 [buildPlans.iosevka-flat-term]
 family  = "Iosevka Term"
@@ -23,16 +21,14 @@ serifs  = "sans"
 no-cv-ss = true
 
 [buildPlans.iosevka-flat-term.variants.design]
+capital-j = "flat-hook-serifed"
 f = "flat-hook"
 g = "single-storey-flat-hook"
 j = "flat-hook-serifed"
+k = "straight"
 t = "flat-hook"
 y = "straight-turn"
-asterisk = "low"
-lig-ltgteq = "slanted"
-
-[buildPlans.iosevka-flat-term.variants.italic]
-k = "straight"
+asterisk = "penta-low"
 
 [buildPlans.iosevka-flat-fixed]
 family  = "Iosevka Fixed"
@@ -41,16 +37,14 @@ serifs  = "sans"
 no-cv-ss = true
 
 [buildPlans.iosevka-flat-fixed.variants.design]
+capital-j = "flat-hook-serifed"
 f = "flat-hook"
 g = "single-storey-flat-hook"
 j = "flat-hook-serifed"
+k = "straight"
 t = "flat-hook"
 y = "straight-turn"
-asterisk = "low"
-lig-ltgteq = "slanted"
-
-[buildPlans.iosevka-flat-fixed.variants.italic]
-k = "straight"
+asterisk = "penta-low"
 
 [collectPlans.iosevka-flat]
 from = ["iosevka-flat", "iosevka-flat-term", "iosevka-flat-fixed"]
