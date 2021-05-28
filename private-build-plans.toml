@@ -14,6 +14,9 @@ t = "flat-hook"
 y = "straight-turn"
 asterisk = "penta-low"
 
+[collectPlans.iosevka-flat]
+from = ["iosevka-flat"]
+
 [buildPlans.iosevka-flat-term]
 family  = "Iosevka Flat Term"
 spacing = "term"
@@ -29,6 +32,9 @@ k = "straight"
 t = "flat-hook"
 y = "straight-turn"
 asterisk = "penta-low"
+
+[collectPlans.iosevka-flat-term]
+from = ["iosevka-flat-term"]
 
 [buildPlans.iosevka-flat-fixed]
 family  = "Iosevka Flat Fixed"
@@ -46,6 +52,9 @@ t = "flat-hook"
 y = "straight-turn"
 asterisk = "penta-low"
 
+[collectPlans.iosevka-flat-fixed]
+from = ["iosevka-flat-fixed"]
+
 [buildPlans.iosevka-flat-proportional]
 family = "Iosevka Flat Proportional"
 spacing = "quasi-proportional"
@@ -62,7 +71,10 @@ t = "flat-hook"
 y = "straight-turn"
 asterisk = "penta-low"
 
-[collectPlans.iosevka-flat]
+[collectPlans.iosevka-flat-proportional]
+from = ["iosevka-flat-proportional"]
+
+[collectPlans.iosevka-flat-super]
 from = ["iosevka-flat", "iosevka-flat-term", "iosevka-flat-fixed", "iosevka-flat-proportional"]
 
 [buildPlans.iosevka-hyperlegible]
@@ -161,6 +173,9 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
 
+[collectPlans.iosevka-hyperlegible]
+from = ["iosevka-hyperlegible"]
+
 [buildPlans.iosevka-hyperlegible-term]
 family  = "Iosevka Hyperlegible Term"
 spacing = "term"
@@ -256,6 +271,9 @@ lig-ltgteq = "flat"
 ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
+
+[collectPlans.iosevka-hyperlegible-term]
+from = ["iosevka-hyperlegible-term"]
 
 [buildPlans.iosevka-hyperlegible-fixed]
 family  = "Iosevka Hyperlegible Fixed"
@@ -353,6 +371,9 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
 
+[collectPlans.iosevka-hyperlegible-fixed]
+from = ["iosevka-hyperlegible-fixed"]
+
 [buildPlans.iosevka-hyperlegible-proportional]
 family  = "Iosevka Hyperlegible Proportional"
 spacing = "quasi-proportional"
@@ -449,5 +470,8 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
 
-[collectPlans.iosevka-hyperlegible]
+[collectPlans.iosevka-hyperlegible-proportional]
+from = ["iosevka-hyperlegible-proportional"]
+
+[collectPlans.iosevka-hyperlegible-super]
 from = ["iosevka-hyperlegible", "iosevka-hyperlegible-term", "iosevka-hyperlegible-fixed", "iosevka-hyperlegible-proportional"]
