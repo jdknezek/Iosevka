@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 set -o errexit -o errtrace -o nounset -o pipefail
 
+families=${1:-flat hyperlegible}
+spacings=${2:-normal term fixed proportional}
+
 plans=''
-for family in flat hyperlegible; do
-    for spacing in '' -term -fixed -proportional; do
-        plans="$plans super-ttc::iosevka-${family}${spacing}"
+for family in $families; do
+    for spacing in $spacings; do
+        plans="$plans super-ttc::iosevka-${family}-${spacing}"
     done
 done
 

@@ -1,10 +1,10 @@
-[buildPlans.iosevka-flat]
+[buildPlans.iosevka-flat-normal]
 family  = "Iosevka Flat"
 spacing = "normal"
 serifs  = "sans"
 no-cv-ss = true
 
-[buildPlans.iosevka-flat.variants.design]
+[buildPlans.iosevka-flat-normal.variants.design]
 capital-a = "straight-serifless"
 capital-b = "standard-serifless"
 capital-c = "serifless"
@@ -104,8 +104,8 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
 
-[collectPlans.iosevka-flat]
-from = ["iosevka-flat"]
+[collectPlans.iosevka-flat-normal]
+from = ["iosevka-flat-normal"]
 
 [buildPlans.iosevka-flat-term]
 family  = "Iosevka Flat Term"
@@ -435,15 +435,15 @@ question = "smooth"
 from = ["iosevka-flat-proportional"]
 
 [collectPlans.iosevka-flat-super]
-from = ["iosevka-flat", "iosevka-flat-term", "iosevka-flat-fixed", "iosevka-flat-proportional"]
+from = ["iosevka-flat-normal", "iosevka-flat-term", "iosevka-flat-fixed", "iosevka-flat-proportional"]
 
-[buildPlans.iosevka-hyperlegible]
+[buildPlans.iosevka-hyperlegible-normal]
 family  = "Iosevka Hyperlegible"
 spacing = "normal"
 serifs  = "sans"
 no-cv-ss = true
 
-[buildPlans.iosevka-hyperlegible.variants.design]
+[buildPlans.iosevka-hyperlegible-normal.variants.design]
 capital-a = "straight-serifless"
 capital-b = "standard-serifless"
 capital-c = "serifless"
@@ -514,7 +514,7 @@ cyrl-capital-ya = "straight"
 cyrl-ya = "straight"
 cyrl-yeri = "corner"
 cyrl-yery = "corner"
-zero = "reverse-slashed"
+zero = "reverse-slashed-oval"
 one = "nobase-flat-top-serif"
 two = "straight-neck"
 three = "twoarcs"
@@ -543,8 +543,8 @@ ascii-single-quote = "straight"
 ascii-grave = "straight"
 question = "smooth"
 
-[collectPlans.iosevka-hyperlegible]
-from = ["iosevka-hyperlegible"]
+[collectPlans.iosevka-hyperlegible-normal]
+from = ["iosevka-hyperlegible-normal"]
 
 [buildPlans.iosevka-hyperlegible-term]
 family  = "Iosevka Hyperlegible Term"
@@ -623,7 +623,7 @@ cyrl-capital-ya = "straight"
 cyrl-ya = "straight"
 cyrl-yeri = "corner"
 cyrl-yery = "corner"
-zero = "reverse-slashed"
+zero = "reverse-slashed-oval"
 one = "nobase-flat-top-serif"
 two = "straight-neck"
 three = "twoarcs"
@@ -731,7 +731,7 @@ cyrl-capital-ya = "straight"
 cyrl-ya = "straight"
 cyrl-yeri = "corner"
 cyrl-yery = "corner"
-zero = "reverse-slashed"
+zero = "reverse-slashed-oval"
 one = "nobase-flat-top-serif"
 two = "straight-neck"
 three = "twoarcs"
@@ -840,7 +840,7 @@ cyrl-capital-ya = "straight"
 cyrl-ya = "straight"
 cyrl-yeri = "corner"
 cyrl-yery = "corner"
-zero = "reverse-slashed"
+zero = "reverse-slashed-oval"
 one = "nobase-flat-top-serif"
 two = "straight-neck"
 three = "twoarcs"
@@ -873,4 +873,4 @@ question = "smooth"
 from = ["iosevka-hyperlegible-proportional"]
 
 [collectPlans.iosevka-hyperlegible-super]
-from = ["iosevka-hyperlegible", "iosevka-hyperlegible-term", "iosevka-hyperlegible-fixed", "iosevka-hyperlegible-proportional"]
+from = ["iosevka-hyperlegible-normal", "iosevka-hyperlegible-term", "iosevka-hyperlegible-fixed", "iosevka-hyperlegible-proportional"]
