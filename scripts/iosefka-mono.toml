@@ -1,0 +1,48 @@
+[buildPlans.IosefkaMono]
+family              = "Iosefka Mono"
+desc                = "SF Mono Style"
+snapshotFamily      = "Iosefka Mono"
+exportGlyphNames    = true
+noCvSs              = true
+buildTextureFeature = true
+
+[buildPlans.IosefkaMono.widths.normal]
+shape = 500
+menu  = 5
+css   = "normal"
+
+[buildPlans.IosefkaMono.variants.design]
+# one                       = "base" # SF Mono style
+one                       = "no-base" # Better differentiation between "l"
+two                       = "straight-neck-serifless"
+five                      = "oblique-arched-serifless"
+eight                     = "two-circles"
+zero                      = "oval-slashed"
+capital-g                 = "toothless-rounded-serifless-hooked"
+capital-q                 = "crossing"
+f                         = "flat-hook-serifless-crossbar-at-x-height"
+j                         = "flat-hook-serifed"
+r                         = "hookless-serifed"
+t                         = "flat-hook"
+w                         = "straight-flat-top-serifless"
+y                         = "straight-turn-serifless"
+long-s                    = "flat-hook-middle-serifed-xh"
+lower-alpha               = "barred-tailed"
+lower-eta                 = "motion-serifed"
+lower-kappa               = "straight-top-right-serifed"
+lower-lambda              = "tailed-turn"
+lower-phi                 = "straight"
+lower-chi                 = "semi-chancery-straight-serifless"
+cyrl-capital-u            = "straight-turn-serifless"
+cyrl-u                    = "straight-turn-serifless"
+asterisk                  = "hex-low"
+paren                     = "normal"
+brace                     = "straight"
+guillemet                 = "straight"
+number-sign               = "slanted"
+at                        = "fourfold-solid-inner"
+cent                      = "open"
+percent                   = "rings-continuous-slash"
+micro-sign                = "tailed-serifless"
+decorative-angle-brackets = "middle"
+lig-ltgteq                = "slanted"
