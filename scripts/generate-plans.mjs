@@ -8,8 +8,15 @@ const bp = TOML.parse(await readFile('build-plans.toml'));
 
 // Custom output
 const pbp = {};
+pbp.buildOptions = { optimizeWithTtx: false };
 pbp.buildPlans = {};
 pbp.collectPlans = {};
+
+const txtrPlans = [];
+pbp.collectPlans['IosevkaTxtr'] = {
+	release: true,
+	from: txtrPlans,
+};
 
 const ss08Plans = [];
 pbp.collectPlans['IosevkaCustom'] = {
@@ -25,6 +32,18 @@ const widths = {
 		css: 'normal',
 	},
 };
+
+// Monospace TXTR
+for (const base of ['', 'Term', 'Fixed']) {
+	const oldKey = `Iosevka${base}`;
+	const plan = structuredClone(bp.buildPlans[oldKey]);
+
+	plan.family += ' TXTR';
+
+	const newKey = oldKey + 'Txtr';
+	pbp.buildPlans[newKey] = plan;
+	txtrPlans.push(newKey);
+}
 
 // Monospace SS08
 for (const base of ['SS08', 'TermSS08', 'FixedSS08']) {
@@ -106,9 +125,11 @@ for (const [family, spacing] of [
 // Set standard options for all plans
 for (const [key, plan] of Object.entries(pbp.buildPlans)) {
 	plan.buildTextureFeature = true;
-	plan.noCvSs = true;
-	(plan.snapshotFeature ??= {}).NWID = plan.spacing === 'term' || plan.spacing === 'fixed' ? 1 : 0;
-	plan.widths = widths;
+	if (!key.endsWith('Txtr')) {
+		plan.noCvSs = true;
+		(plan.snapshotFeature ??= {}).NWID = plan.spacing === 'term' || plan.spacing === 'fixed' ? 1 : 0;
+		plan.widths = widths;
+	}
 }
 
 await writeFile('private-build-plans.toml', TOML.stringify(pbp));
