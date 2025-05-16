@@ -122,6 +122,31 @@ for (const [family, spacing] of [
 	}
 }
 
+// Iosefka Mono
+const sf = TOML.parse(await readFile('scripts/iosefka-mono.toml')).buildPlans.IosefkaMono;
+
+const sfPlans = [];
+pbp.collectPlans['IosefkaMono'] = {
+	release: true,
+	from: sfPlans,
+};
+
+for (const [family, spacing] of [
+	['Iosefka Mono', undefined],
+	['Iosefka Term', 'term'],
+	['Iosefka Fixed', 'fixed'],
+]) {
+	const plan = structuredClone(sf);
+
+	plan.family = family;
+	if (spacing) plan.spacing = spacing;
+
+	const key = family.replace(/ /g, '');
+	pbp.buildPlans[key] = plan;
+
+	sfPlans.push(key);
+}
+
 // Set standard options for all plans
 for (const [key, plan] of Object.entries(pbp.buildPlans)) {
 	plan.buildTextureFeature = true;
