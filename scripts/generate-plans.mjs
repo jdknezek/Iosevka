@@ -24,12 +24,17 @@ pbp.collectPlans['IosevkaCustom'] = {
 	from: ss08Plans,
 };
 
-// Only include normal width
+// Use the same widths for all spacings
 const widths = {
-	normal: {
+	Normal: {
 		shape: 500,
 		menu: 5,
 		css: 'normal',
+	},
+	Extended: {
+		shape: 600,
+		menu: 7,
+		css: 'expanded',
 	},
 };
 
