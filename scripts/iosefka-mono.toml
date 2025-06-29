@@ -2,14 +2,6 @@
 family              = "Iosefka Mono"
 desc                = "SF Mono Style"
 snapshotFamily      = "Iosefka Mono"
-exportGlyphNames    = true
-noCvSs              = true
-buildTextureFeature = true
-
-[buildPlans.IosefkaMono.widths.normal]
-shape = 500
-menu  = 5
-css   = "normal"
 
 [buildPlans.IosefkaMono.variants.design]
 # one                       = "base" # SF Mono style
