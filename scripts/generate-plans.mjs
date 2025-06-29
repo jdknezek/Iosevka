@@ -12,18 +12,6 @@ pbp.buildOptions = { optimizeWithTtx: false };
 pbp.buildPlans = {};
 pbp.collectPlans = {};
 
-const txtrPlans = [];
-pbp.collectPlans['IosevkaTxtr'] = {
-	release: true,
-	from: txtrPlans,
-};
-
-const ss08Plans = [];
-pbp.collectPlans['IosevkaCustom'] = {
-	release: true,
-	from: ss08Plans,
-};
-
 // Use the same widths for all spacings
 const widths = {
 	Normal: {
@@ -39,54 +27,28 @@ const widths = {
 };
 
 // Monospace TXTR
+const txtrPlans = [];
+pbp.collectPlans['IosevkaTxtr'] = {
+	release: true,
+	from: txtrPlans,
+};
+
 for (const base of ['', 'Term', 'Fixed']) {
 	const oldKey = `Iosevka${base}`;
 	const plan = structuredClone(bp.buildPlans[oldKey]);
 
-	plan.family += ' TXTR';
-
 	const newKey = oldKey + 'Txtr';
 	pbp.buildPlans[newKey] = plan;
+
 	txtrPlans.push(newKey);
 }
 
-// Monospace SS08
-for (const base of ['SS08', 'TermSS08', 'FixedSS08']) {
-	const oldKey = `Iosevka${base}`;
-	const plan = structuredClone(bp.buildPlans[oldKey]);
-
-	plan.family = plan.family.replace('SS08', 'Custom');
-
-	const newKey = oldKey.replace('SS08', 'Custom');
-	pbp.buildPlans[newKey] = plan;
-	ss08Plans.push(newKey);
-}
-
-// Proportional SS08
-{
-	const plan = structuredClone(pbp.buildPlans['IosevkaCustom']);
-
-	plan.family = plan.family.replace('Custom', 'Prop Custom');
-	plan.spacing = 'quasi-proportional';
-
-	const newKey = 'IosevkaPropCustom';
-	pbp.buildPlans[newKey] = plan;
-	// ss08Plans.push(newKey);
-
-	pbp.collectPlans[newKey] = {
-		release: true,
-		from: [newKey],
-	};
-}
-
-// Aile & Etoile
+// Aile & Etoile TXTR
 for (const family of ['Aile', 'Etoile']) {
 	const oldKey = `Iosevka${family}`;
 	const plan = structuredClone(bp.buildPlans[oldKey]);
 
-	plan.family += ' Custom';
-
-	const newKey = oldKey + 'Custom';
+	const newKey = oldKey + 'Txtr';
 	pbp.buildPlans[newKey] = plan;
 	pbp.collectPlans[newKey] = {
 		release: true,
@@ -97,10 +59,10 @@ for (const family of ['Aile', 'Etoile']) {
 // Hypersevka
 const hyper = TOML.parse(await readFile('scripts/hypersevka.toml')).buildPlans.Hypersevka;
 
-const hypersevkaPlans = [];
+const hyperPlans = [];
 pbp.collectPlans['Hypersevka'] = {
 	release: true,
-	from: hypersevkaPlans,
+	from: hyperPlans,
 };
 
 for (const [family, spacing] of [
@@ -118,7 +80,7 @@ for (const [family, spacing] of [
 	pbp.buildPlans[key] = plan;
 
 	if (spacing !== 'quasi-proportional') {
-		hypersevkaPlans.push(key);
+		hyperPlans.push(key);
 	} else {
 		pbp.collectPlans[key] = {
 			release: true,
@@ -152,13 +114,40 @@ for (const [family, spacing] of [
 	sfPlans.push(key);
 }
 
+// JDK
+const jdk = TOML.parse(await readFile('scripts/jdk.toml')).buildPlans.IosevkaJDK;
+
+const jdkPlans = [];
+pbp.collectPlans['IosevkaJDK'] = {
+	release: true,
+	from: jdkPlans,
+};
+
+for (const [family, spacing] of [
+	['Iosevka JDK', undefined],
+	['Iosevka JDK Term', 'term'],
+	['Iosevka JDK Fixed', 'fixed'],
+]) {
+	const plan = structuredClone(jdk);
+
+	plan.family = family;
+	if (spacing) plan.spacing = spacing;
+
+	const key = family.replace(/ /g, '');
+	pbp.buildPlans[key] = plan;
+
+	jdkPlans.push(key);
+}
+
 // Set standard options for all plans
 for (const [key, plan] of Object.entries(pbp.buildPlans)) {
 	plan.buildTextureFeature = true;
+	plan.widths = widths;
+
 	if (!key.endsWith('Txtr')) {
 		plan.noCvSs = true;
+		plan.exportGlyphNames = false;
 		(plan.snapshotFeature ??= {}).NWID = plan.spacing === 'term' || plan.spacing === 'fixed' ? 1 : 0;
-		plan.widths = widths;
 	}
 }
 
