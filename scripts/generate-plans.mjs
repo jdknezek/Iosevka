@@ -12,21 +12,8 @@ pbp.buildOptions = { optimizeWithTtx: false };
 pbp.buildPlans = {};
 pbp.collectPlans = {};
 
-// Use the same widths for all spacings
-const widths = {
-	Normal: {
-		shape: 500,
-		menu: 5,
-		css: 'normal',
-	},
-	Extended: {
-		shape: 600,
-		menu: 7,
-		css: 'expanded',
-	},
-};
-
-// Monospace TXTR
+// Create TXTR versions of Iosevka [Aile/Etoile]
+// Monospace
 const txtrPlans = [];
 pbp.collectPlans['IosevkaTxtr'] = {
 	release: true,
@@ -43,7 +30,7 @@ for (const base of ['', 'Term', 'Fixed']) {
 	txtrPlans.push(newKey);
 }
 
-// Aile & Etoile TXTR
+// Aile & Etoile
 for (const family of ['Aile', 'Etoile']) {
 	const oldKey = `Iosevka${family}`;
 	const plan = structuredClone(bp.buildPlans[oldKey]);
@@ -56,93 +43,76 @@ for (const family of ['Aile', 'Etoile']) {
 	};
 }
 
-// Hypersevka
-const hyper = TOML.parse(await readFile('scripts/hypersevka.toml')).buildPlans.Hypersevka;
+async function importPlans (file_name, families) {
+	if (families.length < 1) {
+		throw new Error('Base family name required');
+	}
+	if (families.length < 2) {
+		families.push(`${families[0]} Term`);
+	}
+	if (families.length < 3) {
+		families.push(`${families[0]} Fixed`);
+	}
 
-const hyperPlans = [];
-pbp.collectPlans['Hypersevka'] = {
-	release: true,
-	from: hyperPlans,
-};
+	const base = Object.values(TOML.parse(await readFile(`scripts/plans/${file_name}.toml`)).buildPlans)[0];
 
-for (const [family, spacing] of [
-	['Hypersevka', undefined],
-	['Hypersevka Term', 'term'],
-	['Hypersevka Fixed', 'fixed'],
-	['Hypersevka Prop', 'quasi-proportional'],
-]) {
-	const plan = structuredClone(hyper);
+	const mono_collect_plans = [];
 
-	plan.family = family;
-	if (spacing) plan.spacing = spacing;
+	const spacings = ['', 'term', 'fixed', 'quasi-proportional'];
+	for (let i = 0; i < families.length; i++) {
+		const plan = structuredClone(base);
+		const family = families[i];
+		const key = family.replace(/ /g, '');
+		const spacing = spacings[i];
 
-	const key = family.replace(/ /g, '');
-	pbp.buildPlans[key] = plan;
+		if (i === 0) {
+			pbp.collectPlans[key] = {
+				release: true,
+				from: mono_collect_plans
+			};
+		}
 
-	if (spacing !== 'quasi-proportional') {
-		hyperPlans.push(key);
-	} else {
-		pbp.collectPlans[key] = {
-			release: true,
-			from: [key],
-		};
+		plan.family = family;
+		if (spacing) plan.spacing = spacing;
+
+		pbp.buildPlans[key] = plan;
+
+		if (spacing !== 'quasi-porportional') {
+			mono_collect_plans.push(key);
+		} else {
+			// Quasi-proportional get their own collect plan
+			pbp.collectPlans[key] = {
+				release: true,
+				from: [key],
+			};
+		}
 	}
 }
 
-// Iosefka Mono
-const sf = TOML.parse(await readFile('scripts/iosefka-mono.toml')).buildPlans.IosefkaMono;
-
-const sfPlans = [];
-pbp.collectPlans['IosefkaMono'] = {
-	release: true,
-	from: sfPlans,
-};
-
-for (const [family, spacing] of [
-	['Iosefka Mono', undefined],
-	['Iosefka Term', 'term'],
-	['Iosefka Fixed', 'fixed'],
-]) {
-	const plan = structuredClone(sf);
-
-	plan.family = family;
-	if (spacing) plan.spacing = spacing;
-
-	const key = family.replace(/ /g, '');
-	pbp.buildPlans[key] = plan;
-
-	sfPlans.push(key);
-}
-
-// JDK
-const jdk = TOML.parse(await readFile('scripts/jdk.toml')).buildPlans.IosevkaJDK;
-
-const jdkPlans = [];
-pbp.collectPlans['IosevkaJDK'] = {
-	release: true,
-	from: jdkPlans,
-};
-
-for (const [family, spacing] of [
-	['Iosevka JDK', undefined],
-	['Iosevka JDK Term', 'term'],
-	['Iosevka JDK Fixed', 'fixed'],
-]) {
-	const plan = structuredClone(jdk);
-
-	plan.family = family;
-	if (spacing) plan.spacing = spacing;
-
-	const key = family.replace(/ /g, '');
-	pbp.buildPlans[key] = plan;
-
-	jdkPlans.push(key);
-}
+await Promise.all([
+	importPlans('hypersevka', ['Hypersevka', /*'Hypersevka Term', 'Hypersevka Fixed' , 'Hypersevka Prop'*/]),
+	importPlans('iosefka-mono', ['Iosefka Mono', 'Iosefka Term', 'Iosefka Fixed']),
+	importPlans('jdk', ['Iosevka JDK']),
+	importPlans('sans', ['Iosevka Sans']),
+]);
 
 // Set standard options for all plans
 for (const [key, plan] of Object.entries(pbp.buildPlans)) {
 	plan.buildTextureFeature = true;
-	plan.widths = widths;
+
+	// Use the same widths for all spacings
+	plan.widths = {
+		Normal: {
+			shape: 500,
+			menu: 5,
+			css: 'normal',
+		},
+		Extended: {
+			shape: 600,
+			menu: 7,
+			css: 'expanded',
+		},
+	};
 
 	if (!key.endsWith('Txtr')) {
 		plan.noCvSs = true;
