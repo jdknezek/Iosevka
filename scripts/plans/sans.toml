@@ -5,7 +5,6 @@ snapshotFamily = "Iosevka Sans"
 
 [buildPlans.IosevkaSans.variants.design]
 two = "straight-neck-serifless"
-three = "flat-top-serifless"
 four = "closed-serifless"
 six = "open-contour"
 nine = "open-contour"
